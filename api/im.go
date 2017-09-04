@@ -4,7 +4,7 @@ import (
 	"github.com/dmitryk-dk/slackbot/models"
 )
 
-func OpenIm (token, user string) (string, error) {
+func OpenIm(token, user string) (string, error) {
 	resp, err := Action("im.open", map[string]string{"user": user})
 	if err != nil {
 		return "", err
@@ -13,7 +13,7 @@ func OpenIm (token, user string) (string, error) {
 	return resp.Channel.Id, nil
 }
 
-func ListIms (token string) ([]models.IM, error) {
+func ListIms(token string) ([]models.IM, error) {
 	resp, err := Action("im.list", map[string]string{})
 	if err != nil {
 		return []models.IM{}, err

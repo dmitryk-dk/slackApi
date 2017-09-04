@@ -2,7 +2,7 @@ package api
 
 import "encoding/json"
 
-func EventParser (msg []byte) (interface{}, error){
+func EventParser(msg []byte) (interface{}, error) {
 	var event = Event{}
 
 	if err := json.Unmarshal(msg, &event); err != nil {

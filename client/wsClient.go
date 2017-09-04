@@ -1,10 +1,11 @@
 package client
 
 import (
+	"net/http"
+
 	"github.com/dmitryk-dk/slackbot/api"
 	"github.com/dmitryk-dk/slackbot/models"
 	"github.com/gorilla/websocket"
-	"net/http"
 )
 
 type Client struct {
@@ -30,19 +31,19 @@ func NewClient(token string) *Client {
 	return CreateClient(token)
 }
 
-func (c *Client) Connect(url string)  error {
+func (c *Client) Connect(url string) error {
 
 	dialer := websocket.Dialer{}
 	headers := http.Header{}
 
 	connection, _, err := dialer.Dial(url, headers)
 	if err != nil {
-		return  err
+		return err
 	}
 
 	c.conn = connection
 	c.Connected = true
-	return  nil
+	return nil
 }
 
 func (c *Client) Listen() {

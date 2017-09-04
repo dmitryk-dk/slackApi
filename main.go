@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/dmitryk-dk/slackbot/api"
 	"github.com/dmitryk-dk/slackbot/client"
-	"log"
 )
 
 func main() {

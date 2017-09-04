@@ -89,7 +89,7 @@ type ChannelHistoryChanged struct {
 
 type IMCreated struct {
 	Event
-	User    string        `json:"user"`
+	User    string         `json:"user"`
 	Channel models.Channel `json:"channel"`
 }
 
@@ -117,6 +117,3 @@ type IMHistoryChanged struct {
 	TS      string `json:"ts"`
 	EventTS string `json:"event_ts"`
 }
-
-
-

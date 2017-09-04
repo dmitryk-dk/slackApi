@@ -2,13 +2,14 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 	"flag"
 	"fmt"
-	"github.com/dmitryk-dk/slackbot/models"
 	"io/ioutil"
 	"net/http"
-	"errors"
 	"net/url"
+
+	"github.com/dmitryk-dk/slackbot/models"
 )
 
 type ApiResponse struct {
@@ -18,8 +19,8 @@ type ApiResponse struct {
 	Endpoint string `json:"endpoint"`
 	Token    string `json:"token"`
 
-	Team  map[string]string `json:"team"`
-	Self  map[string]string `json:"self"`
+	Team map[string]string `json:"team"`
+	Self map[string]string `json:"self"`
 
 	Channel struct {
 		Id string `json:"id"`
@@ -50,7 +51,7 @@ func SlackConnect() (*ApiResponse, error) {
 	token, endpoint := api.ReadConfig()
 	api = ApiResponse{
 		Endpoint: *endpoint,
-		Token: *token,
+		Token:    *token,
 	}
 	getUrl := api.Endpoint + api.Token
 	resp, err := http.Get(getUrl)
@@ -72,7 +73,7 @@ func SlackConnect() (*ApiResponse, error) {
 	return &api, nil
 }
 
-func Action (action string, params map[string]string) (*ApiResponse,error){
+func Action(action string, params map[string]string) (*ApiResponse, error) {
 	resp := &ApiResponse{}
 	body, err := GetWrapper(action, params)
 	if err != nil {
@@ -88,7 +89,7 @@ func Action (action string, params map[string]string) (*ApiResponse,error){
 	return resp, nil
 }
 
-func GetWrapper (action string, params map[string]string) ([]byte, error) {
+func GetWrapper(action string, params map[string]string) ([]byte, error) {
 	apiResp := &ApiResponse{}
 	route, err := url.Parse(apiResp.Endpoint + action)
 
