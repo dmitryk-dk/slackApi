@@ -94,4 +94,5 @@ Temporary Items
 
 # My ignore files
 config.json
+.idea
 

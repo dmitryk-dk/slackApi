@@ -58,7 +58,7 @@ func parse(client *client.Client, msg interface{}) {
 
 	case api.Message:
 		channel := msg.Channel
-		text := "Я немного занят отвечу позже"
+		text := "Simple text message here"
 		if err := client.SendMessage(channel, text); err != nil {
 			fmt.Println("An error occured while responding", err)
 		}
