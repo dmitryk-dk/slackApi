@@ -30,7 +30,7 @@ type ApiResponse struct {
 	Ims      []models.IM      `json:"ims"`
 }
 
-func (api ApiResponse) ReadConfig() (*string, *string) {
+func (api *ApiResponse) ReadConfig() (*string, *string) {
 	flagName := api.ReadFlags()
 	file, err := ioutil.ReadFile(*flagName)
 	err = json.Unmarshal(file, &api)
@@ -40,7 +40,7 @@ func (api ApiResponse) ReadConfig() (*string, *string) {
 	return &api.Token, &api.Endpoint
 }
 
-func (api ApiResponse) ReadFlags() (configFile *string) {
+func (api *ApiResponse) ReadFlags() (configFile *string) {
 	configFile = flag.String("config", "config.json", "Path to config file")
 	flag.Parse()
 	return

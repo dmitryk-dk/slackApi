@@ -117,3 +117,27 @@ type IMHistoryChanged struct {
 	TS      string `json:"ts"`
 	EventTS string `json:"event_ts"`
 }
+
+type BotAdded struct {
+	Event
+	Bot struct {
+		ID    string `json:"id"`
+		Name  string `json:"name"`
+		Icons struct {
+			Image48 string `json:"image_48"`
+		} `json:"icons"`
+	} `json:"bot"`
+}
+
+type BotChanged struct {
+	Event
+	Bot struct {
+		ID    string `json:"id"`
+		Name  string `json:"name"`
+		Icons struct {
+			Image48 string `json:"image_48"`
+		} `json:"icons"`
+	} `json:"bot"`
+}
+
+
