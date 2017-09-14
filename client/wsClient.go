@@ -1,6 +1,8 @@
 package client
 
 import (
+	"io"
+	"log"
 	"net/http"
 
 	"github.com/dmitryk-dk/slackbot/api"
@@ -53,13 +55,21 @@ func (c *Client) Listen() {
 		for {
 			_, msg, err := connection.ReadMessage()
 			if err != nil {
-				c.Errors <- err
+				if err == io.EOF {
+					log.Println(err)
+				} else {
+					c.Errors <- err
+				}
 				return
 			}
 
 			message, err := api.EventParser(msg)
 			if err != nil {
-				c.Errors <- err
+				if err == io.EOF {
+					log.Println(err)
+				} else {
+					c.Errors <- err
+				}
 				return
 			}
 
